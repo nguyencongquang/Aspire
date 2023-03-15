@@ -16,17 +16,21 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $admin = User::create([
+        $admin = User::create(
+            [
                                  'name'     => 'admin',
                                  'email' => 'admin@aspire.com',
                                  'role'  => 'admin',
                                  'password' => Hash::make('admin@#$%')
-                             ]);
-        $customer = User::create([
+            ]
+        );
+        $customer = User::create(
+            [
                                   'name'     => 'customer',
                                   'email' => 'customer@aspire.com',
                                   'role'  => 'customer',
                                   'password' => Hash::make('customer@#$%')
-                              ]);
+            ]
+        );
     }
 }

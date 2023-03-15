@@ -14,12 +14,13 @@ return new class extends Migration
     public function up()
     {
         Schema::create(
-            'loans', function (Blueprint $table) {
+            'schedule_payments', function (Blueprint $table) {
                 $table->id();
-                $table->unsignedInteger('user_id');
-                $table->enum('status', ['PENDING','APPROVED','PAID']);
-                $table->integer('term');
+                $table->unsignedInteger('loan_id');
+                $table->enum('status', ['PENDING','APPROVED','PAID'])->default('PENDING');
+                $table->dateTime('due_date');
                 $table->decimal('amount', 11, 2);
+                $table->decimal('customer_input_amount', 11, 2)->nullable();
                 $table->timestamps();
             }
         );
@@ -32,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('loans');
+        Schema::dropIfExists('schedule_payments');
     }
 };

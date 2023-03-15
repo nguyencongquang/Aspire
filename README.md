@@ -28,34 +28,80 @@ DB_PASSWORD=your_db_password
 ```
 ## APIs
 
-- Login
+- Login as admin
 ```bash
-  GET /api/auth/login
+  POST /api/auth/login
+  
 ```
-
-- Follow users
+form-data
 ```bash
-  POST /api/v1/user/{id}/follow
-  Body {
-    "follows" : [id1,id2] // seperated ids by comma
-  }
-```
-
-- Unfollow users
-```bash
-  POST /api/v1/user/{id}/unfollow
-  Body {
-    "unfollows" : [id1,id2] // seperated ids by comma
-  }
-```
-
-- Get followers, search by name
-```bash
-  GET /api/v1/user/{id}/followers?q=name
+  email:admin@aspire.com
+  password:admin@#$%
   
 ```
 
+- Login as customer
+```bash
+  POST /api/auth/login
+  
+```
+form-data
+```bash
+  email:customer@aspire.com
+  password:customer@#$%  
+```
+- Authenticate with bearer token generated from login
+
+example Authorization
+```
+curl --location --request POST '127.0.0.1:8000/api/customer/payment/6/pay' \
+--header 'Accept: application/json' \
+--header 'Authorization: Bearer 2|4SEf5FSHo6TaE24pRBbWKZpT9Wgaz0EbkgnouNGR' \
+--form 'amount="3337.34"'
+```
+
+- Customer creates loan
+```bash
+  POST /api/customer/createLoan
+  ```
+example form-data
+```bash
+  term:3
+  amount:10000  
+```
+
+- Customer view loan
+```bash
+  GET /api/customer/loan/{loanId}  
+```
+
+- Customer add repayment
+```bash
+  POST /api/customer/payment/{scheduleRepaymenId}/pay  
+```
+
+example form-data
+```bash
+  amount:3337.34
+```
+
+- Customer view loan
+```bash
+  GET /api/customer/loan/{loanId}  
+```
+
+- Admin approves loan
+```bash
+  POST /api/admin/approveLoan
+```
+
+example form-data
+```bash
+ loanId:1
+```
+
 ## Unit Test
+- Create a database named aspire_test 
 - Change db connection in .env.testing
 ```
 DB_CONNECTION=mysql

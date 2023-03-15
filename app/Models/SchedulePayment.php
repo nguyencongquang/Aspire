@@ -5,29 +5,26 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Loan extends Model
+class SchedulePayment extends Model
 {
     use HasFactory;
-    const STATUS_PENDING = 'PENDING';
-    const STATUS_APPROVE = 'APPROVED';
-    const STATUS_PAID = 'PAID';
     /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
      */
     protected $fillable = [
-        'user_id',
-        'term',
+        'loan_id',
+        'due_date',
         'amount',
+        'customer_input_amount',
         'status',
+        'created_at',
+        'updated_at',
     ];
 
-    /**
-     * Get the schedule payment for the Loan.
-     */
-    public function schedulePayments()
+    public function loan()
     {
-        return $this->hasMany(SchedulePayment::class);
+        return $this->belongsTo(Loan::class);
     }
 }
