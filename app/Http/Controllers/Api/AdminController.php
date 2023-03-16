@@ -14,6 +14,12 @@ class AdminController extends Controller
 {
     const ROLE_ADMIN = 'admin';
 
+    /**
+     * Admin can approve a loan
+     *
+     * @param  Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function approveLoan(Request $request)
     {
         $role = $request?->user()?->role;

@@ -23,17 +23,17 @@ class AuthController extends Controller
             $validateUser = Validator::make(
                 $request->all(),
                 [
-                                                'email' => 'required|email',
-                                                'password' => 'required'
+                    'email' => 'required|email',
+                    'password' => 'required'
                 ]
             );
 
             if($validateUser->fails()) {
                 return response()->json(
                     [
-                                            'status' => false,
-                                            'message' => 'validation error',
-                                            'errors' => $validateUser->errors()
+                        'status' => false,
+                        'message' => 'validation error',
+                        'errors' => $validateUser->errors()
                     ], 401
                 );
             }
@@ -41,8 +41,8 @@ class AuthController extends Controller
             if(!Auth::attempt($request->only(['email', 'password']))) {
                 return response()->json(
                     [
-                                            'status' => false,
-                                            'message' => 'Email & Password does not match with our record.',
+                        'status' => false,
+                        'message' => 'Email & Password does not match with our record.',
                     ], 401
                 );
             }
@@ -51,17 +51,17 @@ class AuthController extends Controller
 
             return response()->json(
                 [
-                                        'status' => true,
-                                        'message' => 'User Logged In Successfully',
-                                        'token' => $user->createToken("API TOKEN")->plainTextToken
+                    'status' => true,
+                    'message' => 'User Logged In Successfully',
+                    'token' => $user->createToken("API TOKEN")->plainTextToken
                 ], 200
             );
 
         } catch (\Throwable $th) {
             return response()->json(
                 [
-                                        'status' => false,
-                                        'message' => $th->getMessage()
+                    'status' => false,
+                    'message' => $th->getMessage()
                 ], 500
             );
         }

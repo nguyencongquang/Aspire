@@ -17,6 +17,12 @@ class CustomerController extends Controller
 {
     const ROLE_CUSTOMER = 'customer';
 
+    /**
+     * Customer can create a loan
+     * @param  Request  $request
+     * @param  LoanService  $loanService
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function createLoan(Request $request, LoanService $loanService)
     {
         $role = $request?->user()?->role;
@@ -65,6 +71,12 @@ class CustomerController extends Controller
 
     }
 
+    /**
+     * Customer can view his loan
+     * @param $id
+     * @param  Request  $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function viewLoan($id, Request $request)
     {
         $loan = Loan::findOrFail($id);
@@ -82,6 +94,13 @@ class CustomerController extends Controller
         );
     }
 
+    /**
+     * Customer add a repayments
+     * @param $id
+     * @param  Request  $request
+     * @param  LoanService  $loanService
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function addRepayment($id, Request $request, LoanService $loanService)
     {
         $validateLoan = Validator::make($request->all(), ['amount' => 'required|numeric']);

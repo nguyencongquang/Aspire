@@ -117,3 +117,16 @@ DB_PASSWORD=your_db_password
   ./vendor/bin/phpunit
   
 ```
+
+- Structure of unit test
+##### Feature/AuthenticationTest.php
+Test all the functions and logics in AuthController.php
+
+##### Feature/AdminTest.php
+Test all the functions and logics in AdminController.php
+
+##### Feature/CustomerTest.php
+Test all the functions and logics in CustomerController.php
+
+##### Unit/LoanServiceTest.php
+Test the logic to generate schedule payments
