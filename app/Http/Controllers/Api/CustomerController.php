@@ -109,7 +109,7 @@ class CustomerController extends Controller
         return response()->json(
             [
                 'status' => true,
-                'message' => 'Add Repayment Successfully',
+                'message' => 'Add Repayment Successfully.',
             ], 200
         );
 
