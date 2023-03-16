@@ -85,11 +85,6 @@ example form-data
   amount:3337.34
 ```
 
-- Customer view loan
-```bash
-  GET /api/customer/loan/{loanId}  
-```
-
 - Admin approves loan
 ```bash
   POST /api/admin/approveLoan
